@@ -65,51 +65,94 @@
   </div>
 
   <div class="container hidden" id="question-screen">
-    <h2>Q1. 시청자 물건 이름 지어주기</h2>
-    <img src="quiz-image.png" alt="문제 이미지">
-    <p>생명의 신비 착상 어때요?</p>
+    <h2 id="question-title"></h2>
+    <img id="question-image" src="" alt="문제 이미지">
+    <p id="question-text"></p>
     <input id="answer-input" class="input-box" type="text" placeholder="정답입력">
     <button class="input-button" onclick="checkAnswer()">확인</button>
   </div>
 
-  <div class="container hidden" id="correct-screen">
-    <h2 class="correct">⭕ 정답!</h2>
-    <p>생명의 신비 착상</p>
-    <button class="button" onclick="showResult()">다음</button>
-  </div>
-
-  <div class="container hidden" id="wrong-screen">
-    <h2 class="wrong">❌ 오답!</h2>
-    <p>생명의 신비 착상</p>
-    <button class="button" onclick="showResult()">다음</button>
+  <div class="container hidden" id="feedback-screen">
+    <h2 id="feedback-message"></h2>
+    <p id="correct-answer"></p>
+    <button class="button" onclick="nextQuestion()">다음</button>
   </div>
 
   <div class="container hidden" id="result-screen">
     <h2>침착맨 작명 퀴즈 결과</h2>
-    <h1 id="score-display">60점</h1>
+    <h1 id="score-display"></h1>
     <button class="button" onclick="location.reload()">다시하기</button>
   </div>
 
   <script>
+    const questions = [
+      {
+        title: 'Q1. 시청자 물건 이름 지어주기',
+        image: 'quiz-image.png',
+        text: '생명의 신비 착상 어때요?',
+        answer: '생명의 신비 착상'
+      },
+      // Q2~Q20 추가 영역
+      // 아래는 더미 문제들 (원하는 문제로 교체 가능)
+      ...Array.from({ length: 19 }, (_, i) => ({
+        title: `Q${i + 2}. 침착맨 퀴즈`,
+        image: 'quiz-image.png',
+        text: '문제 텍스트 예시',
+        answer: `정답${i + 2}`
+      }))
+    ];
+
+    let current = 0;
+    let score = 0;
+
     function startQuiz() {
       document.getElementById('start-screen').classList.add('hidden');
       document.getElementById('question-screen').classList.remove('hidden');
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById('question-title').innerText = q.title;
+      document.getElementById('question-image').src = q.image;
+      document.getElementById('question-text').innerText = q.text;
+      document.getElementById('answer-input').value = '';
     }
 
     function checkAnswer() {
       const input = document.getElementById('answer-input').value.trim();
-      const correct = '생명의 신비 착상';
-      document.getElementById('question-screen').classList.add('hidden');
-      if (input === correct) {
-        document.getElementById('correct-screen').classList.remove('hidden');
+      const q = questions[current];
+      const isCorrect = input === q.answer;
+
+      if (isCorrect) {
+        score++;
+        document.getElementById('feedback-message').innerText = '⭕ 정답!';
+        document.getElementById('feedback-message').className = 'correct';
       } else {
-        document.getElementById('wrong-screen').classList.remove('hidden');
+        document.getElementById('feedback-message').innerText = '❌ 오답!';
+        document.getElementById('feedback-message').className = 'wrong';
+      }
+
+      document.getElementById('correct-answer').innerText = q.answer;
+
+      document.getElementById('question-screen').classList.add('hidden');
+      document.getElementById('feedback-screen').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      document.getElementById('feedback-screen').classList.add('hidden');
+      current++;
+      if (current < questions.length) {
+        document.getElementById('question-screen').classList.remove('hidden');
+        showQuestion();
+      } else {
+        showResult();
       }
     }
 
     function showResult() {
-      document.getElementById('correct-screen').classList.add('hidden');
-      document.getElementById('wrong-screen').classList.add('hidden');
+      const totalScore = score * 5;
+      document.getElementById('score-display').innerText = `${totalScore}점`;
       document.getElementById('result-screen').classList.remove('hidden');
     }
   </script>
