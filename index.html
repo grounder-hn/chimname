@@ -98,7 +98,7 @@
         title: 'Q2. 레츠고 피카츄의 피카츄 이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-07.png',
         text: '다음 네모에 들어갈 말은?',
-        answer: '쥐대기공룡',
+        answer: ['쥐대기공룡'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-07.jpg'
       },
       {
@@ -112,14 +112,14 @@
         title: 'Q4. 라면끈대 시즌1 라면이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-09.png',
         text: '다음 네모에 들어갈 말은?',
-        answer: '모래지옥',
+        answer: ['모래지옥'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-09.jpg'
       },
       {
         title: 'Q5. 호미니아 탐험대 캐릭터 이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-10.png',
         text: '다음 네모에 들어갈 말은?',
-        answer: '왕골',
+        answer: ['왕골'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-10.jpg'
       },
       {
@@ -133,14 +133,14 @@
         title: 'Q7. 차단봉',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-12.png',
         text: '다음 네모에 들어갈 말은?',
-        answer: '꺼져봉',
+        answer: ['꺼져봉'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-12.jpg'
       },
       {
         title: 'Q8. 레데리 진짜 재밌는 말 이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-13.png',
         text: '다음 네모에 들어갈 말은?',
-        answer: '야비켬마',
+        answer: ['야비켬마'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-13.jpg'
       },
       {
@@ -154,16 +154,9 @@
         title: 'Q10. 아무도 맞추지 못한 갈틱쇼',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-15.png',
         text: '다음 네모에 들어갈 말은?',
-        answer: '나는끼리코덤보',
+        answer: ['나는끼리코덤보'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-15.jpg'
-      },
-      ...Array.from({ length: 10 }, (_, i) => ({
-        title: `Q${i + 11}. 침착맨 퀴즈`,
-        image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-15.png',
-        feedbackImage: 'https://grounder-hn.github.io/chimname/feedback-4-15.png',
-        text: '추가 문제 텍스트 예시',
-        answer: `정답${i + 11}`
-      }))
+      }
     ];
 
     let current = 0;
@@ -184,9 +177,11 @@
     }
 
     function checkAnswer() {
-      const input = document.getElementById('answer-input').value.trim();
+      const inputRaw = document.getElementById('answer-input').value;
+      const input = inputRaw.trim().replace(/\s/g, '').toLowerCase();
       const q = questions[current];
-      const isCorrect = input === q.answer;
+      const answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+      const isCorrect = answers.some(ans => ans.toString().trim().replace(/\s/g, '').toLowerCase() === input);
 
       if (isCorrect) {
         score++;
@@ -197,7 +192,7 @@
         document.getElementById('feedback-message').className = 'wrong';
       }
 
-      document.getElementById('correct-answer').innerText = q.answer;
+      document.getElementById('correct-answer').innerText = `정답: ${Array.isArray(q.answer) ? q.answer[0] : q.answer}`;
       document.getElementById('feedback-image').src = q.feedbackImage || q.image;
 
       document.getElementById('question-screen').classList.add('hidden');
