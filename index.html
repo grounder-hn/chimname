@@ -14,14 +14,14 @@
       padding: 0;
     }
     .container {
-      max-width: 1200px;
+      max-width: 600px;
       margin: 0 auto;
       padding: 50px 20px;
     }
     h1, h2 {
       font-weight: bold;
     }
-   h3 {
+    h3 {
       font-size: 100px;
       font-weight: bold;
     }
@@ -90,72 +90,72 @@
   </div>
 
   <script>
-    const questions = [
+    let questions = [
       {
-        title: 'Q1. 시청자 물건 이름 지어주기',
+        title: '시청자 물건 이름 지어주기',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-06.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['생명의 신비 착상', '생명의신비착상'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-06.jpg'
       },
       {
-        title: 'Q2. 레츠고 피카츄의 피카츄 이름',
+        title: '레츠고 피카츄의 피카츄 이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-07.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['쥐대기공룡'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-07.jpg'
       },
       {
-        title: 'Q3. 다투지네 새로운 이름 제안',
+        title: '다투지네 새로운 이름 제안',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-08.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['김진왜케불탐', '김진애왜케불탐?'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-08.jpg'
       },
       {
-        title: 'Q4. 라면끈대 시즌1 라면이름',
+        title: '라면끈대 시즌1 라면이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-09.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['모래지옥', '모래 지옥'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-09.jpg'
       },
       {
-        title: 'Q5. 호미니아 탐험대 캐릭터 이름',
+        title: '호미니아 탐험대 캐릭터 이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-10.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['왕골'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-10.jpg'
       },
       {
-        title: 'Q6. 투구-투구푸스 진화 미싱링크',
+        title: '투구-투구푸스 진화 미싱링크',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-11.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['(빵)투져스', '빵투져스', '빵 투져스'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-11.jpg'
       },
       {
-        title: 'Q7. 차단봉',
+        title: '차단봉',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-12.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['꺼져봉'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-12.jpg'
       },
       {
-        title: 'Q8. 레데리 진짜 재밌는 말 이름',
+        title: '레데리 진짜 재밌는 말 이름',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-13.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['야비켬마'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-13.jpg'
       },
       {
-        title: 'Q9. 라면끈대 연수원에서 이름표',
+        title: '라면끈대 연수원에서 이름표',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-14.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['노르망디 크롱스 블레이드', '노르망디크롱스블레이드'],
         feedbackImage: 'https://grounder-hn.github.io/chimname/answer-14.jpg'
       },
       {
-        title: 'Q10. 아무도 맞추지 못한 갈틱쇼',
+        title: '아무도 맞추지 못한 갈틱쇼',
         image: 'https://grounder-hn.github.io/chimname/%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6-4-15.png',
         text: '다음 네모에 들어갈 말은?',
         answer: ['나는끼리코덤보'],
@@ -167,6 +167,7 @@
     let score = 0;
 
     function startQuiz() {
+      questions = questions.sort(() => Math.random() - 0.5);
       document.getElementById('start-screen').classList.add('hidden');
       document.getElementById('question-screen').classList.remove('hidden');
       showQuestion();
@@ -189,7 +190,7 @@
 
       if (isCorrect) {
         score++;
-        document.getElementById('feedback-message').innerText = '🟢 정답!';
+        document.getElementById('feedback-message').innerText = '⭕ 정답!';
         document.getElementById('feedback-message').className = 'correct';
       } else {
         document.getElementById('feedback-message').innerText = '❌ 오답!';
@@ -215,7 +216,7 @@
     }
 
     function showResult() {
-      const totalScore = score * 10;
+      const totalScore = score * 5;
       document.getElementById('score-display').innerText = `${totalScore}점`;
       document.getElementById('result-screen').classList.remove('hidden');
     }
