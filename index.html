@@ -86,19 +86,21 @@
 
   <script>
     const questions = [
-      {
-        title: 'Q1. 시청자 물건 이름 지어주기',
-        image: 'quiz-image.png',
-        text: '생명의 신비 착상 어때요?',
-        answer: '생명의 신비 착상'
-      },
-      // Q2~Q20 추가 영역
-      // 아래는 더미 문제들 (원하는 문제로 교체 가능)
-      ...Array.from({ length: 19 }, (_, i) => ({
-        title: `Q${i + 2}. 침착맨 퀴즈`,
-        image: 'quiz-image.png',
-        text: '문제 텍스트 예시',
-        answer: `정답${i + 2}`
+      { title: 'Q1. 시청자 물건 이름 지어주기', image: 'https://i.ibb.co/pjX03xMh/4-06.png', text: '다음 네모에 들어갈 말은?', answer: '생명의 신비 착상' },
+      { title: 'Q2. 레츠고 피카츄의 피카츄 이름', image: 'https://i.ibb.co/0pYLV8ZK/4-07.png', text: '다음 네모에 들어갈 말은?', answer: '쥐대기공룡' },
+      { title: 'Q3. 다투지네 새로운 이름 제안', image: 'https://i.ibb.co/84c7qZjg/4-08.png', text: '다음 네모에 들어갈 말은?', answer: '김진애케불탑' },
+      { title: 'Q4. 라면끈대 시즌1 라면이름', image: 'https://i.ibb.co/23rzfG3K/4-09.png', text: '다음 네모에 들어갈 말은?', answer: '모래지옥' },
+      { title: 'Q5. 호미니아 탐험대 캐릭터 이름', image: 'https://i.ibb.co/78LGR8Y/4-10.png', text: '다음 네모에 들어갈 말은?', answer: '왕골' },
+      { title: 'Q6. 투구-투구푸스 진화 미싱링크', image: 'https://i.ibb.co/d4DXXbmn/4-11.png', text: '다음 네모에 들어갈 말은?', answer: '(빵)투저스' },
+      { title: 'Q7. 차단봉', image: 'https://i.ibb.co/6JyV5NNx/4-12.png', text: '다음 네모에 들어갈 말은?', answer: '꺼져봉' },
+      { title: 'Q8. 레데리 진짜 재밌는 말 이름', image: 'https://i.ibb.co/8gGJJH8x/4-13.png', text: '다음 네모에 들어갈 말은?', answer: '야비컴마' },
+      { title: 'Q9. 라면끈대 연수원에서 이름표', image: 'https://i.ibb.co/3Y1VdWZB/4-14.png', text: '다음 네모에 들어갈 말은?', answer: '노르망디 크롱스 블레이드' },
+      { title: 'Q10. 아무도 맞추지 못한 갈틱쇼', image: 'https://i.ibb.co/1fgQpKXC/4-15.png', text: '다음 네모에 들어갈 말은?', answer: '나는끼리코덤보' },
+      ...Array.from({ length: 10 }, (_, i) => ({
+        title: `Q${i + 11}. 침착맨 퀴즈`,
+        image: 'https://i.ibb.co/1fgQpKXC/4-15.png',
+        text: '추가 문제 텍스트 예시',
+        answer: `정답${i + 11}`
       }))
     ];
 
