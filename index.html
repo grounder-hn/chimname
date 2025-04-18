@@ -19,6 +19,7 @@
       padding: 50px 20px;
     }
     h1, h2 {
+      font-size: 100px;
       font-weight: bold;
     }
     img {
@@ -185,7 +186,7 @@
 
       if (isCorrect) {
         score++;
-        document.getElementById('feedback-message').innerText = '⭕ 정답!';
+        document.getElementById('feedback-message').innerText = '🟢 정답!';
         document.getElementById('feedback-message').className = 'correct';
       } else {
         document.getElementById('feedback-message').innerText = '❌ 오답!';
