@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>침착맨 작명 퀴즈</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #faf9f7;
+      color: #111;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+    h1, h2 {
+      font-weight: bold;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .button, .input-button {
+      margin-top: 30px;
+      background-color: #ec4899;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .input-button {
+      margin-left: 10px;
+    }
+    .input-box {
+      padding: 10px;
+      font-size: 16px;
+      width: 50%;
+    }
+    .feedback {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    .correct {
+      color: green;
+    }
+    .wrong {
+      color: red;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="start-screen">
+    <h1>침착맨 작명 퀴즈</h1>
+    <button class="button" onclick="startQuiz()">시작하기</button>
+  </div>
+
+  <div class="container hidden" id="question-screen">
+    <h2>Q1. 시청자 물건 이름 지어주기</h2>
+    <img src="quiz-image.png" alt="문제 이미지">
+    <p>생명의 신비 착상 어때요?</p>
+    <input id="answer-input" class="input-box" type="text" placeholder="정답입력">
+    <button class="input-button" onclick="checkAnswer()">확인</button>
+  </div>
+
+  <div class="container hidden" id="correct-screen">
+    <h2 class="correct">⭕ 정답!</h2>
+    <p>생명의 신비 착상</p>
+    <button class="button" onclick="showResult()">다음</button>
+  </div>
+
+  <div class="container hidden" id="wrong-screen">
+    <h2 class="wrong">❌ 오답!</h2>
+    <p>생명의 신비 착상</p>
+    <button class="button" onclick="showResult()">다음</button>
+  </div>
+
+  <div class="container hidden" id="result-screen">
+    <h2>침착맨 작명 퀴즈 결과</h2>
+    <h1 id="score-display">60점</h1>
+    <button class="button" onclick="location.reload()">다시하기</button>
+  </div>
+
+  <script>
+    function startQuiz() {
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('question-screen').classList.remove('hidden');
+    }
+
+    function checkAnswer() {
+      const input = document.getElementById('answer-input').value.trim();
+      const correct = '생명의 신비 착상';
+      document.getElementById('question-screen').classList.add('hidden');
+      if (input === correct) {
+        document.getElementById('correct-screen').classList.remove('hidden');
+      } else {
+        document.getElementById('wrong-screen').classList.remove('hidden');
+      }
+    }
+
+    function showResult() {
+      document.getElementById('correct-screen').classList.add('hidden');
+      document.getElementById('wrong-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
